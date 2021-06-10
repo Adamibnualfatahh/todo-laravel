@@ -27,7 +27,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+       return view('todo.create');
     }
 
     /**
@@ -38,7 +38,11 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $todo = new Todo;
+        $todo->Todo = $request->todo;
+        $todo->save();
+
+        return redirect()->route('todo.index');
     }
 
     /**
@@ -83,6 +87,7 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+        return redirect()->route('todo.index');
     }
 }
